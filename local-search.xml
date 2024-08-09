@@ -4,13 +4,21 @@
   
   
   <entry>
-    <title>Hello World</title>
-    <link href="/2024/07/26/hello-world/"/>
-    <url>/2024/07/26/hello-world/</url>
+    <title>博客搭建小记</title>
+    <link href="/2024/07/26/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/"/>
+    <url>/2024/07/26/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<!--more--><!-- [TOC] --><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>   搭建博客的原因参见：菜单栏“关于”</p><h1 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h1><p>本机运行正常，部署到github后样式丢失，排查与解决过程：</p><ol><li>线上f12发现控制台有爆红，显示关键错误信息：<code>SyntaxError: Unexpected token &#39;&lt;</code>，后面几个都是这个报错</li><li>点击报错进入资源页面。资源页面显示名称的是（index），原本应该是个js，点开内容却是首页的html内容</li><li>怀疑是<strong>路径错误</strong>。找不到对应js于是自动返回默认的首页，html不是js，肯定会报错</li><li>核实首页index.html的js引入路径，发现是<code>/我在_config.yml的url中的二级目录名/js/xxx.js</code>。我github博客地址是很早以前配置的，当时带了二级目录，现在实际地址栏已没有二级目录，所以导致js路径错误，需要修改为<code>/js/xxx.js</code></li><li>解决方式：修正部署博客仓库的Website设置，调整到只有一级目录。修改_config.yml的url配置，去掉二级目录名，和Website保持一致。</li><li>总结：<strong>博客实际部署后的路径、hexo的yml路径需要一致</strong></li></ol>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>blog</tag>
+      
+      <tag>hexo</tag>
+      
+    </tags>
     
   </entry>
   
