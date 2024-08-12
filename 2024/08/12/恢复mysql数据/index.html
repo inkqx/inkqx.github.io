@@ -21,23 +21,22 @@
   <meta name="author" content="小七闲">
   <meta name="keywords" content="">
   
-    <meta name="description" content="博客搭建的一些记录和问题">
+    <meta name="description" content="恢复mysql数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客搭建小记">
-<meta property="og:url" content="https://inkqx.github.io/2024/07/26/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:title" content="恢复mysql数据">
+<meta property="og:url" content="https://inkqx.github.io/2024/08/12/%E6%81%A2%E5%A4%8Dmysql%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="方寸间">
-<meta property="og:description" content="博客搭建的一些记录和问题">
+<meta property="og:description" content="恢复mysql数据">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-26T09:35:04.000Z">
-<meta property="article:modified_time" content="2024-08-09T07:22:38.415Z">
+<meta property="article:published_time" content="2024-08-12T02:47:40.000Z">
+<meta property="article:modified_time" content="2024-08-12T02:48:18.983Z">
 <meta property="article:author" content="小七闲">
-<meta property="article:tag" content="blog">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>博客搭建小记 - 方寸间</title>
+  <title>恢复mysql数据 - 方寸间</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="博客搭建小记"></span>
+            <span id="subtitle" data-typed-text="恢复mysql数据"></span>
           
         </div>
 
@@ -214,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-26 17:35" pubdate>
-          星期五, 七月 26日 2024, 5:35 下午
+        <time datetime="2024-08-12 10:47" pubdate>
+          星期一, 八月 12日 2024, 10:47 上午
         </time>
       </span>
     
@@ -227,7 +226,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          294 字
+          836 字
         
       </span>
     
@@ -239,7 +238,7 @@
         
         
           <!-- compatible with older versions-->
-          3 分钟
+          7 分钟
         
       </span>
     
@@ -276,24 +275,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">博客搭建小记</h1>
+            <h1 id="seo-header">恢复mysql数据</h1>
             
             
               <div class="markdown-body">
                 
-                <!--more-->
-<!-- [TOC] -->
+                <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h3><p>⭐️当mysql意外无法正常运行，但是保留了frm和ibd文件时，往往还是能通过这两种文件进行数据恢复的。<br>⭐️这两个文件的位置一般在<code>/usr/local/mysql/data/dbname/</code>或<code>/var/lib/mysql/dbname/</code>目录下。<br>⭐️如果以上两个都不适用，也通过命令查找mysql相关目录，再进行逐一查找，例如<br><code>whereis mysql</code></p>
+<h3 id="2-恢复表结构"><a href="#2-恢复表结构" class="headerlink" title="2 恢复表结构"></a>2 恢复表结构</h3><h4 id="2-1-环境和工具"><a href="#2-1-环境和工具" class="headerlink" title="2.1 环境和工具"></a>2.1 环境和工具</h4><p>系统环境：linux<br>当前目录：&#x2F;var&#x2F;test&#x2F;下<br>待恢复的表结构文件：在 &#x2F;var&#x2F;test&#x2F;mysql&#x2F;testdb&#x2F; 下的所有frm文件<br>待恢复的表数据文件：在 &#x2F;var&#x2F;test&#x2F;mysql&#x2F;testdb&#x2F; 下的所有ibd文件<br>还原表结构工具：dbsake</p>
+<h4 id="2-2-下载"><a href="#2-2-下载" class="headerlink" title="2.2 下载"></a>2.2 下载</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">curl -s <span class="hljs-keyword">http</span>://<span class="hljs-built_in">get</span>.dbsake.net &gt; dbsake<br></code></pre></td></tr></table></figure>
 
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>   搭建博客的原因参见：菜单栏“关于”</p>
-<h1 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h1><p>本机运行正常，部署到github后样式丢失，排查与解决过程：</p>
-<ol>
-<li>线上f12发现控制台有爆红，显示关键错误信息：<code>SyntaxError: Unexpected token &#39;&lt;</code>，后面几个都是这个报错</li>
-<li>点击报错进入资源页面。资源页面显示名称的是（index），原本应该是个js，点开内容却是首页的html内容</li>
-<li>怀疑是<strong>路径错误</strong>。找不到对应js于是自动返回默认的首页，html不是js，肯定会报错</li>
-<li>核实首页index.html的js引入路径，发现是<code>/我在_config.yml的url中的二级目录名/js/xxx.js</code>。我github博客地址是很早以前配置的，当时带了二级目录，现在实际地址栏已没有二级目录，所以导致js路径错误，需要修改为<code>/js/xxx.js</code></li>
-<li>解决方式：修正部署博客仓库的Website设置，调整到只有一级目录。修改_config.yml的url配置，去掉二级目录名，和Website保持一致。</li>
-<li>总结：<strong>博客实际部署后的路径、hexo的yml路径需要一致</strong></li>
-</ol>
+<h4 id="2-3-赋权"><a href="#2-3-赋权" class="headerlink" title="2.3 赋权"></a>2.3 赋权</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> u+x dbsake  <br></code></pre></td></tr></table></figure>
+
+<h4 id="2-4-批量读取-表结构"><a href="#2-4-批量读取-表结构" class="headerlink" title="2.4 批量读取 表结构"></a>2.4 批量读取 表结构</h4><p>生成创建表结构sql语句 至文件 <code>/var/test/mysql/rev/rev.sql</code></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs groovy">sudo .<span class="hljs-regexp">/dbsake frmdump /</span><span class="hljs-keyword">var</span><span class="hljs-regexp">/test/</span>mysql<span class="hljs-regexp">/testdb/</span>*.frm &gt; <span class="hljs-regexp">/var/</span>test<span class="hljs-regexp">/mysql/</span>rev/rev.sql<br></code></pre></td></tr></table></figure>
+<p>利用mysql可视化工具导入sql文件，因为表结构和数据库版本问题，导入时可能会遇到问题，需要根据报错信息调整sql文件，以下为常见问题</p>
+<h4 id="2-5-常见导入问题"><a href="#2-5-常见导入问题" class="headerlink" title="2.5 常见导入问题"></a>2.5 常见导入问题</h4><ul>
+<li>字段类型为timestamp、不为空 时，必须有默认值。<br>  默认值需要是大于等于<code>1970-00-00 08:00:02</code>的标准时间格式（其他文章看到是1970-00-00 00:00:01，但是本地测试结果为需要多加八小时左右，可能会根据区时有所不同）</li>
+<li>两个字段同时设置为timestamp、可为空、无默认值 时，可能会报错。建议至少其中一个设置默认值。</li>
+</ul>
+<h3 id="3-恢复表数据"><a href="#3-恢复表数据" class="headerlink" title="3 恢复表数据"></a>3 恢复表数据</h3><h4 id="3-1-删除新建表的表空间（mysql命令模式）"><a href="#3-1-删除新建表的表空间（mysql命令模式）" class="headerlink" title="3.1 删除新建表的表空间（mysql命令模式）"></a>3.1 删除新建表的表空间（mysql命令模式）</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> tb_name <span class="hljs-keyword">DISCARD</span> <span class="hljs-keyword">TABLESPACE</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-2-复制表空间并授权"><a href="#3-2-复制表空间并授权" class="headerlink" title="3.2 复制表空间并授权"></a>3.2 复制表空间并授权</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">cp</span> <span class="hljs-keyword">tags</span>.ibd /var/lib/mysql/<span class="hljs-symbol">&lt;database_name&gt;</span> <br><span class="hljs-keyword">cd</span> /var/lib/mysql/<span class="hljs-symbol">&lt;database_name&gt;</span><br>chown mysq<span class="hljs-variable">l:mysql</span> <span class="hljs-keyword">tags</span>.ibd<br></code></pre></td></tr></table></figure>
+<p>批量赋权可以参考以下命令：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 在复制好的ibd文件目录下执行</span><br><span class="hljs-attribute">chown</span> mysql:mysql <span class="hljs-regexp">*.ibd</span><br></code></pre></td></tr></table></figure>
+
+
+<h4 id="3-3-关联表空间（mysql命令模式）"><a href="#3-3-关联表空间（mysql命令模式）" class="headerlink" title="3.3 关联表空间（mysql命令模式）"></a>3.3 关联表空间（mysql命令模式）</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> tb_name <span class="hljs-keyword">IMPORT</span> <span class="hljs-keyword">TABLESPACE</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-4-可能问题"><a href="#3-4-可能问题" class="headerlink" title="3.4 可能问题"></a>3.4 可能问题</h4><p>如果关联时遇报错：</p>
+<blockquote>
+<p>Schema mismatch (Table has ROW_TYPE_DYNAMIC row format, .ibd file has ROW_TYPE_COMPACT row format.)</p>
+</blockquote>
+<p>说明表行类型不一致，需要修改成后面的类型。<br>以以上报错为例，需要修改成COMPACT，则对应的修改语句如下（<em>该语句执行后可能会删除复制的idb文件，如果删除了请重新从3.2开始执行步骤</em>）<br><code>ALTER TABLE tb_name ROW_FORMAT=COMPACT; </code></p>
+<h4 id="3-5-批量处理"><a href="#3-5-批量处理" class="headerlink" title="3.5 批量处理"></a>3.5 批量处理</h4><p>在数据表不多的情况下，按照3.1-3.4流程处理可行，但是如果表格上百张，就不太现实。所以写了生成批量表格3.1、3.3、3.4步骤的sql文件的代码，实现原理也很简单，主要就是拼接sql并写入到文件中。<br>php代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-comment">// 获取ibd文件目录</span><br><span class="hljs-variable">$list</span> = <span class="hljs-title function_ invoke__">glob</span>(<span class="hljs-string">&#x27;C:\Users\Administrator.DESKTOP-4PF1LET\Desktop\dbname\*.ibd&#x27;</span>);<br><br><span class="hljs-comment">// 生成数据库恢复文件语句</span><br><span class="hljs-variable">$fileContent1</span> = <span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-variable">$fileContent2</span> = <span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-variable">$fileContent3</span> = <span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$list</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$table</span>) &#123;<br>    <span class="hljs-variable">$table_name</span> = <span class="hljs-title function_ invoke__">pathinfo</span>(<span class="hljs-variable">$table</span>, PATHINFO_FILENAME);<br>    <span class="hljs-variable">$fileContent1</span> .= <span class="hljs-string">&#x27; -- 删除表空间：&#x27;</span> . <span class="hljs-variable">$table_name</span> . PHP_EOL;<br>    <span class="hljs-variable">$fileContent1</span> .= <span class="hljs-string">&quot;ALTER TABLE `<span class="hljs-subst">&#123;$table_name&#125;</span>` DISCARD TABLESPACE;&quot;</span> . PHP_EOL . PHP_EOL;<br><br>    <span class="hljs-variable">$fileContent2</span> .= <span class="hljs-string">&#x27; -- 修改表行类型：&#x27;</span> . <span class="hljs-variable">$table_name</span> . PHP_EOL;<br>    <span class="hljs-variable">$fileContent2</span> .= <span class="hljs-string">&quot;ALTER TABLE `<span class="hljs-subst">&#123;$table_name&#125;</span>` ROW_FORMAT = COMPACT;&quot;</span> . PHP_EOL . PHP_EOL;<br><br>    <span class="hljs-variable">$fileContent3</span> .= <span class="hljs-string">&#x27; -- 关联表空间：&#x27;</span> . <span class="hljs-variable">$table_name</span> . PHP_EOL;<br>    <span class="hljs-variable">$fileContent3</span> .= <span class="hljs-string">&quot;ALTER TABLE `<span class="hljs-subst">&#123;$table_name&#125;</span>` IMPORT TABLESPACE;&quot;</span> . PHP_EOL;<br>&#125;<br><br><span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">&#x27;/del.sql&#x27;</span>, <span class="hljs-variable">$fileContent1</span>);<br><span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">&#x27;/alter.sql&#x27;</span>, <span class="hljs-variable">$fileContent2</span>);<br><span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">&#x27;/import.sql&#x27;</span>, <span class="hljs-variable">$fileContent3</span>);<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-参考"><a href="#4-参考" class="headerlink" title="4 参考"></a>4 参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaojin21cen/article/details/103971628">https://blog.csdn.net/xiaojin21cen/article/details/103971628</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/6BM22N6FfmhsWYWEJfJO9w">https://mp.weixin.qq.com/s/6BM22N6FfmhsWYWEJfJO9w</a></p>
 
                 
               </div>
@@ -306,9 +323,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog/" class="print-no-link">#blog</a>
-      
-        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
+        <a href="/tags/mysql/" class="print-no-link">#mysql</a>
       
     </div>
   
@@ -320,8 +335,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>博客搭建小记</div>
-      <div>https://inkqx.github.io/2024/07/26/博客搭建小记/</div>
+      <div>恢复mysql数据</div>
+      <div>https://inkqx.github.io/2024/08/12/恢复mysql数据/</div>
     </div>
     <div class="license-meta">
       
@@ -333,7 +348,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月26日</div>
+          <div>2024年8月12日</div>
         </div>
       
       
@@ -365,15 +380,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/12/VSFTPD%E5%88%9B%E5%BB%BAftp%E8%B4%A6%E5%8F%B7/" title="VSFTPD创建ftp账号">
+                      <a href="/2024/08/12/mysql%E7%AE%A1%E7%90%86%E5%A4%9A%E6%9C%8D%E5%8A%A1%E5%99%A8ftp%E8%99%9A%E6%8B%9F%E7%94%A8%E6%88%B7/" title="mysql管理多服务器ftp虚拟用户">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">VSFTPD创建ftp账号</span>
+                        <span class="hidden-mobile">mysql管理多服务器ftp虚拟用户</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/08/12/VSFTPD%E5%88%9B%E5%BB%BAftp%E8%B4%A6%E5%8F%B7/" title="VSFTPD创建ftp账号">
+                        <span class="hidden-mobile">VSFTPD创建ftp账号</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
